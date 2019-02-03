@@ -143,7 +143,7 @@ $tasks_list = [$task_1, $task_2, $task_3, $task_4, $task_5, $task_6];
                     <?php if ($value["task_closed"] == "Нет"): ?>
                     <tr class="tasks__item task">
                         <td class="task__select">
-                            <label class="checkbox task__checkbox">
+                            <label class="checkbox task__checkbox"> 
                                 <input class="checkbox__input visually-hidden" type="checkbox" checked>
                                 <span class="checkbox__text"><?=$value["task_subj"]; ?></span>
                             </label>
