@@ -132,7 +132,7 @@ $tasks_list = [$task_1, $task_2, $task_3, $task_4, $task_5, $task_6];
                                 <span class="checkbox__text"><?=$value["task_subj"]; ?></span>
                             </label>
                         </td>
-                        <td class="task__file">
+                        <td class="task__file"> 
                             <a class="download-link" href="#">Home.psd</a>
                         </td>
                         <td class="task__date"><?=$value["task_date"]; ?></td>
