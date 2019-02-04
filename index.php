@@ -122,7 +122,7 @@ $tasks_list = [$task_1, $task_2, $task_3, $task_4, $task_5, $task_6];
                         </td>
                         <td class="task__date"><?=$value["task_date"]; ?></td>
                     </tr>
-                    <? endforeach; ?>
+                    <? endforeach; ?> 
                     <?php else: ?>
                     <?php foreach ($tasks_list as $key => $value): ?>
                     <?php if ($value["task_closed"] == "Нет"): ?>
