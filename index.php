@@ -1,10 +1,49 @@
 <?php
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
+$projects = ["Входящие", "Учеба", "Работа", "Домашние дела", "Авто"];
+$tasks_list = [
+    $task_1 = [
+        "task_subj" => "Собеседование в IT компании",
+        "task_date" => "01.12.2019",
+        "task_category" => "Работа",
+        "task_closed" => "Нет",
+    ],
+    $task_2 = [
+        "task_subj" => "Выполнить тестовое задание",
+        "task_date" => "25.12.2019",
+        "task_category" => "Работа",
+        "task_closed" => "Нет",
+    ],
+    $task_3 = [
+        "task_subj" => "Сделать задание первого раздела",
+        "task_date" => "21.12.2019",
+        "task_category" => "Работа",
+        "task_closed" => "Нет",
+    ],
+    $task_4 = [
+        "task_subj" => "Встреча с другом",
+        "task_date" => "22.12.2019",
+        "task_category" => "Работа",
+        "task_closed" => "Нет",
+    ],
+    $task_5 = [
+        "task_subj" => "Купить корм для кота",
+        "task_date" => "Нет",
+        "task_category" => "Работа",
+        "task_closed" => "Нет",
+    ],
+    $task_6 = [
+        "task_subj" => "Заказать пиццу",
+        "task_date" => "Нет",
+        "task_category" => "Работа",
+        "task_closed" => "Нет",
+    ]
+];
+$tasks_list = [$task_1, $task_2, $task_3, $task_4, $task_5, $task_6];
 ?>
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
     <title>Дела в порядке</title>
@@ -12,60 +51,49 @@ $show_complete_tasks = rand(0, 1);
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/flatpickr.min.css">
 </head>
-
 <body>
 <h1 class="visually-hidden">Дела в порядке</h1>
-
 <div class="page-wrapper">
     <div class="container container--with-sidebar">
         <header class="main-header">
             <a href="/">
                 <img src="img/logo.png" width="153" height="42" alt="Логотип Дела в порядке">
             </a>
-
             <div class="main-header__side">
                 <a class="main-header__side-item button button--plus open-modal" href="pages/form-task.html">Добавить задачу</a>
-
                 <div class="main-header__side-item user-menu">
                     <div class="user-menu__image">
                         <img src="img/user.png" width="40" height="40" alt="Пользователь">
                     </div>
-
                     <div class="user-menu__data">
                         <p>Константин</p>
-
                         <a href="#">Выйти</a>
                     </div>
                 </div>
             </div>
         </header>
-
         <div class="content">
             <section class="content__side">
                 <h2 class="content__side-heading">Проекты</h2>
-
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
+                        <?php foreach ($projects as $key => $value): ?>
                         <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#">Название проекта</a>
+                            <a class="main-navigation__list-item-link" href="#"><? print($value);?></a>
                             <span class="main-navigation__list-item-count">0</span>
                         </li>
+                        <? endforeach; ?>
                     </ul>
                 </nav>
-
                 <a class="button button--transparent button--plus content__side-button"
                    href="pages/form-project.html" target="project_add">Добавить проект</a>
             </section>
-
             <main class="content__main">
                 <h2 class="content__main-heading">Список задач</h2>
-
                 <form class="search-form" action="index.php" method="post">
                     <input class="search-form__input" type="text" name="" value="" placeholder="Поиск по задачам">
-
                     <input class="search-form__submit" type="submit" name="" value="Искать">
                 </form>
-
                 <div class="tasks-controls">
                     <nav class="tasks-switch">
                         <a href="/" class="tasks-switch__item tasks-switch__item--active">Все задачи</a>
@@ -73,29 +101,50 @@ $show_complete_tasks = rand(0, 1);
                         <a href="/" class="tasks-switch__item">Завтра</a>
                         <a href="/" class="tasks-switch__item">Просроченные</a>
                     </nav>
-
                     <label class="checkbox">
                         <!--добавить сюда аттрибут "checked", если переменная $show_complete_tasks равна единице-->
+                        <input class="checkbox__input visually-hidden show_completed" type="checkbox" <? if ($show_complete_tasks == 1){print ("checked");};?>>
+                        <span class="checkbox__text">Показывать выполненные</span>
                         <input class="checkbox__input visually-hidden show_completed" type="checkbox" <?php if ($show_complete_tasks == 1): ?> checked<?php endif; ?>>
                     <span class="checkbox__text">Показывать выполненные</span>
                     </label>
                 </div>
-
                 <table class="tasks">
-                    <tr class="tasks__item task">
+                    <?php if ($show_complete_tasks == 1): ?>
+                    <?php foreach ($tasks_list as $key => $value): ?>
+                    <tr class="tasks__item task" <?php if($value["task_closed"] = "Да"): ?>task--completed<?php endif; ?>">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
-                                <span class="checkbox__text">Сделать главную страницу Дела в порядке</span>
+                                <span class="checkbox__text"><?=$value["task_subj"]; ?></span>
                             </label>
                         </td>
-
                         <td class="task__file">
                             <a class="download-link" href="#">Home.psd</a>
                         </td>
-
-                        <td class="task__date"></td>
+                        <td class="task__date"><?=$value["task_date"]; ?></td>
                     </tr>
+                    <? endforeach; ?> 
+                    <?php else: ?>
+                    <?php foreach ($tasks_list as $key => $value): ?>
+                    <?php if ($value["task_closed"] == "Нет"): ?>
+                    <tr class="tasks__item task">
+                        <td class="task__select">
+                            <label class="checkbox task__checkbox">
+                                <input class="checkbox__input visually-hidden" type="checkbox" checked>
+                                <span class="checkbox__text"><?=$value["task_subj"]; ?></span>
+                            </label>
+                        </td>
+                        <td class="task__file">
+                            <a class="download-link" href="#">Home.psd</a>
+                        </td>
+                        <td class="task__date"><?=$value["task_date"]; ?></td>
+                        <td class="task__controls">
+                        </td>
+                    </tr>
+                    <? endif; ?>
+                    <? endforeach; ?>
+                    <? endif; ?>
                     <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
                     <?php if ($show_complete_tasks == 1): ?>
                         <tr class="tasks__item task task--completed">
@@ -115,17 +164,13 @@ $show_complete_tasks = rand(0, 1);
         </div>
     </div>
 </div>
-
 <footer class="main-footer">
     <div class="container">
         <div class="main-footer__copyright">
             <p>© 2019, «Дела в порядке»</p>
-
             <p>Веб-приложение для удобного ведения списка дел.</p>
         </div>
-
         <a class="main-footer__button button button--plus" href="pages/form-task.html">Добавить задачу</a>
-
         <div class="main-footer__social social">
             <span class="visually-hidden">Мы в соцсетях:</span>
             <a class="social__link social__link--facebook" href="#">
@@ -174,7 +219,6 @@ $show_complete_tasks = rand(0, 1);
         </div>
     </div>
 </footer>
-
 <script src="flatpickr.js"></script>
 <script src="script.js"></script>
 </body>
