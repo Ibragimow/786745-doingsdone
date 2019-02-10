@@ -39,17 +39,19 @@ $tasks_list = [
         "task_closed" => "Нет",
     ]
 ];
-    $tasks_list = [$task_1, $task_2, $task_3, $task_4, $task_5, $task_6];
+$tasks_list = [$task_1, $task_2, $task_3, $task_4, $task_5, $task_6];
 
-    function projects_count($tasks_list, $project) {
-        $count = 0;
-        foreach ($tasks_list as $task_item) {
-            if ($task_item['task_category'] === $project) {
-                $count +=1;
-            }
+function projects_count($tasks_list, $project) {
+    $count = 0;
+    foreach ($tasks_list as $task_item) {
+        if ($task_item['task_category'] === $project) {
+            $count +=1;
         }
-        return $count;
     }
+    return $count;
+}
+
+$tasks_list = [$task_1, $task_2, $task_3, $task_4, $task_5, $task_6];
 ?>
 <!DOCTYPE html>
 <html lang="ru">
