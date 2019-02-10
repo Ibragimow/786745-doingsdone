@@ -12,6 +12,5 @@ $layout_content = include_template('layout.php', [
     'page_title' => '"Дела в порядке" - Главная страница',
     'username' => $username,
 ]);
-
 print($layout_content);
 ?>
