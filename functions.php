@@ -30,5 +30,4 @@ function projects_count($tasks_list, $project) {
     }
     return $count;
 }
-//say hi
 ?>
