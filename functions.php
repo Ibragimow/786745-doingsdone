@@ -7,6 +7,7 @@ function include_template($name, $data) {
         return $result;
     }
 
+    
     ob_start();
     extract($data);
     require $name;
